@@ -2,8 +2,8 @@
 
 This is project made by:
 -------------------------
-Mariam Mohamed Kamal
-Amira Kamal
+#Mariam Mohamed Kamal
+#Amira Kamal
 Mai Elsaadawy
 Alaa AbdelRahman
 Toka ahmed
