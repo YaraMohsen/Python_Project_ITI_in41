@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 import DIO
 
 """
-    a python tool for making embedded software engineers' life easier.
+    A python tool for making embedded software engineers' life easier.
 
     This tool allows you to generate your peripherals code dynamically, so you would not waste time 
     on looking things up in data sheets.
