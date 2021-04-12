@@ -1,0 +1,123 @@
+from tkinter import *
+from tkinter import ttk 
+root=Tk()
+    
+root.title("SPI Protocol Configration")
+root.geometry("600x700")
+label = Label(root, text="Create Your Drive")
+label.pack()
+#--------------------------------------------------------
+
+# Creating two frames
+panedwindow=ttk.Panedwindow(root, orient=HORIZONTAL)  
+panedwindow.pack(fill=BOTH, expand=True)
+
+leftFrame = ttk.Frame(panedwindow,width=200,height=300, relief=SUNKEN)
+rightFrame = ttk.Frame(panedwindow,width=400,height=400, relief=SUNKEN)
+panedwindow.add(leftFrame, weight=1)  
+panedwindow.add(rightFrame, weight=4)
+
+
+#-----------------------------------------------------------
+# Lists of our Optionts
+modeList = ["Master","Slave"]
+SPImodes = ["mode 0", "mode 1" , "mode 2" , "mode 3"]
+ClockRate = ["Fosc/4" , "Fosc/16" , "Fosc/64" , "Fosc/128" , "Fosc/2" , "Fosc/8" , "Fosc/32"]
+#-----------------------------------------------------------
+# selected in OptionMenu
+value_inside1 = StringVar(leftFrame)
+value_inside2 = StringVar(leftFrame)
+value_inside3 = StringVar(leftFrame)
+
+
+# Set the default value of the variable
+value_inside1.set("Select The Mode")
+value_inside2.set("Select Spi Modes")
+value_inside3.set("Select Clock Rate")
+
+#--------------------------------------------------------
+# OptionMenu
+label1 = Label(leftFrame, text="Options").pack()
+
+modes = OptionMenu(leftFrame, value_inside1, *modeList).pack()
+SpiMode = OptionMenu(leftFrame, value_inside2, *SPImodes).pack()
+Clockrate = OptionMenu(leftFrame, value_inside3, *ClockRate).pack()
+#---------------------------------------------------------
+
+
+def select_themode(*args):
+    x=value_inside1.get()
+    file=open("spi.c","w+") 
+    file.write("#include \"spi.h\" \n#include <avr/io.h> \n")
+ 
+
+    if x =='Master' :
+        file.write("void SPI_Master_init() \n{ \nSPCR=0x00; \n")
+        file.write("//Work in Master Mode \n \n")
+        file.write("SPCR|=(1<<MSTR);\nSPCR|=(1<<SPE);\n" )
+        
+    elif x== 'Slave' :
+        file.write("void SPI_Slave_init() \n{ \nSPCR=0x00; \n")
+        file.write("// work on slave mode \n\n")
+        file.write("SPCR|=(1<<SPE);\n")
+    file.close()
+
+def select_spimodes(*args):
+    x=value_inside1.get()
+    selected = value_inside2.get()
+    file = open("spi.c","a+")
+    if x =='Master' or x =='Slave':    
+        if selected == 'mode 0' :
+            file.write("// mode0 selected \n ")
+        elif selected == 'mode 1' :
+            file.write(" // mode1 selected \nSPCR|=(1<<CPHA);\n")
+        elif selected == 'mode 2' :
+            file.write("// mode2 selected \nSPCR|=(1<<CPOL);\n")
+        else:
+            file.write("// mode 3 selected \nSPCR|=(1<<CPHA);\nSPCR|=(1<<CPOL);\n")
+        
+    file.close() 
+
+def select_clockrate (*args):
+    selected2 = value_inside3.get()
+    file = open("spi.c","a+")
+    if selected2 == 'Fosc/2':
+        file.write("// Prescalar = 2  \nSPSR|=(1<<SPI2X);\n}")
+    elif selected2 == 'Fosc/4':
+        file.write("// Prescalar = 4  \n}")
+    elif selected2 == 'Fosc/8':
+        file.write("// Prescalar = 8  \nSPSR|=(1<<SPI2X);\nSPCR|=(1<<SPR0);\n}")
+    elif selected2 == 'Fosc/16':
+        file.write("// Prescalar = 16  \nSPCR|=(1<<SPR0);\n}")
+    elif selected2 == 'Fosc/32':
+        file.write("// Prescalar = 32  \nSPSR|=(1<<SPI2X);\nSPCR|=(1<<SPR1);\n}")
+    elif selected2 == 'Fosc/64':
+        file.write("// Prescalar = 64  \nSPSR|=(1<<SPI2X);\nSPCR|=(1<<SPR0);\nSPCR|=(1<<SPR1);\n}")
+    else:
+        file.write("//Prescalar = 128 \nSPCR|=(1<<SPR0);\nSPCR|=(1<<SPR1);\n}")
+        
+    file.close()    
+
+
+
+
+def buttonClick(*arg):
+    
+    file = open("spi.c", "r")
+    data = file.read()
+    label23 = Label(rightFrame, text=data).pack()
+
+ 
+    
+label2 = Label(rightFrame, text="Code").pack()
+button1 = Button(leftFrame,text="Generate",command=buttonClick).pack()
+
+
+
+
+value_inside1.trace('w',select_themode)
+value_inside2.trace('w',select_spimodes)
+value_inside3.trace('w',select_clockrate)
+
+
+root.mainloop()  
