@@ -9,7 +9,7 @@ HOW TO RUN:
 
 you need to download all files and keep them in one directory, but you only need to run one script "iTi_41_Tooling_Kit.py".
 for this you will need to install to python_packages (PySimpleGUI & tkinter):
-# do not follow this step if you already have those packages
+	# do not follow this step if you already have those packages
 ```
 	$ sudo pip3 install PySimpleGUI
 	$ sudo apt-get install python3-tk
