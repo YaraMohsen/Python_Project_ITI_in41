@@ -8,7 +8,6 @@ The project is a script using Python to generate an Inital files and GUI from co
 HOW TO RUN:
 
 you need to download all files and keep them in one directory, but you only need to run one script "iTi_41_Tooling_Kit.py".
-
 for this you will need to install to python_packages (PySimpleGUI & tkinter):
 # do not follow this step if you already have those packages
 ```
