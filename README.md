@@ -11,16 +11,17 @@ you need to download all files and keep them in one directory, but you only need
 
 for this you will need to install to python_packages (PySimpleGUI & tkinter):
 	# do not follow this step if you already have those packages
-
-        ```
+```
 	$ sudo pip3 install PySimpleGUI
 	$ sudo apt-get install python3-tk
-	```
+```
 
 then you will need to run the following command once in project directory:
+```
 	$ sudo python3 iTi_41_Tooling_Kit.py    #for python3 (recommended)
 # or 	$ sudo python iTi_41_Tooling_Kit.py     #for python2 or if you edited path variables
-	
+```
+
 the Prephiral code will be generated on the screen for you, and also will creat a file in your directory
 with the code, the file will be name <prephiral_name>.c
 
