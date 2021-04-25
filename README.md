@@ -35,7 +35,7 @@ This is project made by:
 - Toka ahmed
 - Sayed Sukkar 
 - Omar morsy
-- Mohamed Shazly
+- Mohamed ElShazly
 - Belal
 - Osama
 - Yehia
