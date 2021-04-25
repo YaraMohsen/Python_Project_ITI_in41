@@ -4,6 +4,7 @@ DDRA = "00000000"
 DDRB = "00000000"
 DDRC = "00000000"
 DDRD = "00000000"
+
 my_ports = [DDRA, DDRB, DDRC, DDRD]
 port_names = ['DDRA', 'DDRB', 'DDRC', 'DDRD']
 data = [None] * 8
