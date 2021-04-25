@@ -1,3 +1,5 @@
+
+
 import PySimpleGUI as sg
 
 DDRA = "00000000"
@@ -83,4 +85,3 @@ code_viewer_column = [
     [sg.Multiline("Your code will be previewed here \nand a file will be created in your directory", font='any 10',
              justification="center", size=(70, 15), key="-CODE_DIO-")],
 ]
-
